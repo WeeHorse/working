@@ -1,2 +1,3 @@
-# working
-A scheduling and job tracking app called working
+# Working
+A scheduling and job tracking app
+

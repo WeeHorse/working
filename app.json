@@ -1,0 +1,8 @@
+{
+  "name": "Working",
+  "description": "A scheduling and job tracking app called working",
+  "repository": "https://github.com/WeeHorse/working",
+  "logo": "",
+  "keywords": [],
+  "image": "heroku/nodejs"
+}

@@ -1,0 +1,19 @@
+{
+  "clientDir": "./client/",
+  "js": {
+    "combineClientCodeAtDevStartup": false,
+    "buildBabelifiedJsToo": false
+  },
+  "sass":[
+    {
+      "compileAtBootup": true,
+      "watch": true,
+      "arguments":{
+        "watchFolder": "./sass/working",
+        "file": "./sass/working/index.scss",
+        "outFile": "./client/css/index.css",
+        "outputStyle": "uncompressed"
+      }
+    }
+  ]
+}
