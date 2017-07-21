@@ -1,0 +1,29 @@
+/*!
+ *
+ * Working
+ * Code library copyright 2017 Nodebite AB
+ * Copyright 2017 Benjamin Berglund
+ *
+*/
+
+// global variables and mixins:
+
+@import "variables";
+@import "mixins";
+
+// libraries:
+
+@import "client/node_modules/bootstrap/scss/bootstrap";
+@import "font-awesome-4.7.0.scss";
+
+// adding css files with no file ending compiles it into sass:
+@import "../../client/node_modules/flatpickr/dist/flatpickr";
+// @import "../../client/node_modules/flatpickr/dist/themes/dark";
+
+// our files:
+
+@import "custom/main";
+@import "custom/form";
+@import "custom/header";
+@import "custom/footer";
+@import "custom/cms";

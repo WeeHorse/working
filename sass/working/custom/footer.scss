@@ -1,0 +1,31 @@
+html{
+  position: relative;
+}
+
+main{
+  min-height: calc(100vh - 170px - 10px);
+  padding-bottom: 60px;
+  @media screen and (max-width: $max-xs){
+    padding-bottom: 60px;
+  }
+}
+
+
+
+body,html{
+  padding-bottom:0;
+  margin-bottom:0;
+}
+
+footer{
+  font-size:12px;
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  border-top: 2px groove #292929;
+  background-color: #0c0c0c;
+  padding: 5px 0 0;
+  color:#a9a9a9;
+
+}

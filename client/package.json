@@ -1,0 +1,18 @@
+{
+  "name": "working-client",
+  "version": "0.0.1",
+  "description": "Client for working - a scheduling and job tracking app",
+  "main": "index.html",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "flatpickr": "^3.0.5-1",
+    "jquery": "^3.2.1",
+    "tether": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Benjamin Berglund",
+  "license": "ISC"
+}

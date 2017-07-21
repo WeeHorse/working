@@ -1,0 +1,62 @@
+body {
+  background-color:#000; // background: linear-gradient(#000, #111, #222);
+  color:#fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  @media screen and (max-width: $max-xs) and (orientation:portrait){
+    padding-bottom: 75px;
+  }
+}
+
+[template-name="app"]{
+  overflow-x: hidden;
+}
+
+button {
+  cursor:pointer;
+}
+
+.right{
+  text-align: right;
+}
+
+.spaced{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.spaced-bottom{
+  margin-bottom: 10px;
+}
+
+.spaced-top{
+  margin-top: 10px;
+}
+
+a[data-href]{
+  cursor: pointer;
+}
+
+.no-scroll{
+  overflow: hidden;
+}
+
+ul{
+  list-style: none;
+  padding-left: 0;
+  &.arrow-style a:before{
+    content: ">";
+    padding-right: 4px;
+  }
+  &.dotted-style>li:before,
+  &.dotted-style a:before{
+    content: "•";
+    padding-right: 4px;
+  }
+
+  li {
+    text-indent: -15px;
+    margin-left: 15px;
+  }
+}
+

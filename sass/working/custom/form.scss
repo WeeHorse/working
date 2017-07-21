@@ -1,0 +1,96 @@
+input[required]{
+  &:invalid.hasBeenFocused{
+    &:focus{
+      outline: none;
+      box-shadow: 0 0 4px 1px red;
+    }
+    &:not(:focus){
+      box-shadow: 0 0 4px 1px rgba(128,0,0, 1);
+    }
+  }
+
+  &:valid:focus{
+    outline: none;
+    box-shadow: 0 0 4px 2px green;
+  }
+
+  &.invalid.hasBeenFocused{
+    &:focus{
+      outline: none;
+      box-shadow: 0 0 4px 1px red !important;
+    }
+    &:not(:focus){
+      box-shadow: 0 0 4px 1px rgba(128,0,0, 1) !important;
+    }
+  }
+
+  &:invalid.hasBeenFocusedBefore {
+    background-color:#fcc;
+  }
+  &.invalid.hasBeenFocusedBefore {
+    background-color:#fcc;
+  }
+}
+
+.flatpickr-input{
+  width: 100%;
+  text-align: center;
+}
+
+.switch {
+  margin-bottom: 0;
+  margin-left: 8px;
+  margin-right: 8px;
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 26px;
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #888;
+    border-radius: 26px;
+    @include prefix(transition, .4s, webkit);
+
+    &:before{
+      border-radius: 50%;
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      @include prefix(transition, .4s, webkit);
+    }
+  }
+
+  input[type="checkbox"] {
+    display:none;
+    &:focus + .slider { box-shadow: 0 0 1px #2196F3; }
+    &.checked + .slider,
+    &:checked + .slider {
+      background-color: $blue;
+      &:before { @include prefix(transform, translateX(20px), webkit ms); }
+    }
+  }
+}
+
+.input-field-loading-data {
+    background-image: url("../images/loading-spinner.gif");
+    background-size: 24px 24px;
+    background-position:right 3px center;
+    background-repeat: no-repeat;
+}
+
+.no-good-info {
+  border-radius:5px;
+  padding:10px;
+  color:#000;
+  background-color:#ffcccc;
+}
