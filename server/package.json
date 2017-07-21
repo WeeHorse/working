@@ -1,0 +1,50 @@
+{
+  "name": "working-server",
+  "version": "0.0.1",
+  "description": "Server for working - a scheduling and job tracking app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:WeeHorse/working.git"
+  },
+  "author": "Benjamin Berglund",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WeeHorse/working/issues"
+  },
+  "homepage": "https://github.com/WeeHorse/working#readme",
+  "dependencies": {
+    "async": "^2.4.1",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "cheerio": "^1.0.0-rc.1",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "encoding": "^0.1.12",
+    "express": "^4.15.2",
+    "hooks-fixed": "^2.0.0",
+    "iconv-lite": "^0.4.17",
+    "kareem": "^1.4.1",
+    "mkdirp": "^0.5.1",
+    "mongodb": "^2.2.28",
+    "mongoose": "^4.9.7",
+    "mongoosefromclass": "^0.1.1",
+    "mpath": "^0.3.0",
+    "mpromise": "^0.5.5",
+    "mquery": "^2.3.1",
+    "muri": "^1.2.1",
+    "nodemailer": "^4.0.1",
+    "object-hash": "^1.1.8",
+    "regexp-clone": "0.0.1",
+    "resolve-from": "^3.0.0",
+    "response-time": "^2.3.2",
+    "sha1": "^1.1.1",
+    "singleton-class": "^1.0.4",
+    "sliced": "^1.0.1",
+    "snowball": "^0.3.1",
+    "text-diff": "^1.0.1"
+  }
+}
