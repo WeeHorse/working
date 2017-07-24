@@ -1,0 +1,3 @@
+class CmsFieldTextarray extends CMS {
+
+}

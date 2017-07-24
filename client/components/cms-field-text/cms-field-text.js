@@ -1,0 +1,3 @@
+class CmsFieldText extends CMS {
+
+}

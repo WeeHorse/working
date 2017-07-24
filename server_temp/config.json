@@ -1,0 +1,39 @@
+{
+  "useCombinedJs": false,
+  "env": "dev",
+  "passwordSalt": "someOther34##52%%43@@y",
+  "devhostPrefix": "http://",
+  "devhost": "localhost",
+  "devport": 3000,
+  "livehostPrefix": "http://",
+  "livehost": "working.test",
+  "liveport": 3000,
+  "requestBodyLimit": "2mb",
+  "clientPath": "../client/",
+  "defaultDataDir": "../../default-data/",
+  "modules":[
+    "path",
+    "util",
+    "http",
+    "string_decoder",
+    "../modules/mail",
+    "../core/loginhandler.class",
+    "../core/proxies",
+    "../core/restrouter.class",
+    "../core/sessionhandler.class",
+    "fs"
+  ],
+  "promisify":{
+    "fs": ["readdir","mkdir","readFile"],
+    "mkdirp": false
+  },
+
+  "mongoDb":{
+    "host": "localhost",
+    "database": ""
+  },
+  "modelPath": "models/",
+  "models":[
+
+  ]
+}

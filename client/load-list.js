@@ -34,8 +34,18 @@ gnarly.load = `
 
   components/
     app.*
-    header.*
-    footer.*
     index-page.*
+    cms-dash.*
+    cms-header.*
+    cms-login.*
+    cms-collection.*
+    cms-item.*
+    cms-field-textarray.*
+    cms-field-text.*
+    cms-field-textarea.*
+    cms-field-json.*
+    cms-field-wysiwyg.*
+    cms-field-email.*
+    cms-settings.*
 
 `;

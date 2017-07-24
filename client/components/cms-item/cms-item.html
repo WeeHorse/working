@@ -1,0 +1,7 @@
+<div class="form-wrapper[if fullViewEditing] full-view[endif]">
+  <form id="${item._id?'form_'+item._id:'form_new'}" class="editing">
+    [repeat fields, field]
+      [template field.cmsFieldComponent, {_id: item._id, field: field}]
+    [endrepeat]
+  </form>
+</div>

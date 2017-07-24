@@ -1,0 +1,3 @@
+class CmsFieldJson extends CMS {
+
+}

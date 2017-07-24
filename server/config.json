@@ -1,39 +1,41 @@
 {
   "useCombinedJs": false,
   "env": "dev",
+  "dev":{
+    "hostPrefix": "http://",
+    "host": "localhost",
+    "port": 3000
+  },
+  "live":{
+    "hostPrefix": "http://",
+    "host": "working.test",
+    "port": 3000
+  },
+  "secret": "smoothiehoodogurufuria",
   "passwordSalt": "someOther34##52%%43@@y",
-  "devhostPrefix": "http://",
-  "devhost": "localhost",
-  "devport": 3000,
-  "livehostPrefix": "http://",
-  "livehost": "working.test",
-  "liveport": 3000,
   "requestBodyLimit": "2mb",
   "clientPath": "../client/",
-  "defaultDataDir": "../../default-data/",
+  "orm":{
+    "routes": ["rest", "concepts", "entities", "views"]
+  },
+  "db": {
+    "connectionLimit": 1998,
+    "user": "root",
+    "password": "mysql",
+    "database": "working",
+    "socketPath": "/tmp/mysql.sock",
+    "multipleStatements": true,
+    "timezone": "0000"
+  },
   "modules":[
     "path",
     "util",
     "http",
     "string_decoder",
-    "../modules/mail",
-    "../core/loginhandler.class",
-    "../core/proxies",
-    "../core/restrouter.class",
-    "../core/sessionhandler.class"
     "fs"
   ],
   "promisify":{
     "fs": ["readdir","mkdir","readFile"],
     "mkdirp": false
-  },
-
-  "mongoDb":{
-    "host": "localhost",
-    "database": ""
-  },
-  "modelPath": "models/",
-  "models":[
-
-  ]
+  }
 }

@@ -1,0 +1,6 @@
+<div class="form-group row summernote-field[if field.required] has-danger[endif]" data-id="${_id||''}">
+  <label class="col-2 col-form-label">${field.texts[0]}</label>
+  <div class="col-9">
+    <div class="wysiwyg" name="${field.fieldName}" [if field.required] data-required="1"[endif]>${field.fieldVal}</div>
+  </div>
+</div>

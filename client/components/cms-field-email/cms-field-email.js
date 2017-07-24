@@ -1,0 +1,3 @@
+class CmsFieldEmail extends CMS {
+
+}

@@ -1,0 +1,13 @@
+<header class="cms-header">
+  <a class="logo cms-logo" href="/cms"></a>
+  <!--<a class="logo" href="/"></a>-->
+  <nav>
+    <a href="/" class="left"><span class="fa fa-home"></span><br>Till webbplatsen</a>
+    <!--<a href="/cms/login"><span class="fa fa-sign-in"></span><br>Logga in</a>-->
+    [if loggedIn]
+      <a href="/cms"><span class="fa fa-building-o"></span><br>Collections</a>
+      <a href="/cms-settings"><span class="fa fa-cogs"></span><br>Inställningar</a>
+      <a data-click="logout"><span class="fa fa-sign-out"></span><br>Logga ut</a>
+    [endif]
+  </nav>
+</header>

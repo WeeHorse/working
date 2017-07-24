@@ -1,0 +1,14 @@
+<div>
+  [template cms-header, {loggedIn:loggedIn}]
+  <div class="row cms-dash">
+    <div class="col-sm-9 offset-sm-1 col-lg-8 offset-lg-2">
+      [if loggedIn]
+        [repeat collections, collection]
+          [template cms-collection, {collection: collection}]
+        [endrepeat]
+      [else]
+        [template cms-login]
+      [endif]
+    </div>
+  </div>
+</div>

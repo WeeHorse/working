@@ -1,0 +1,26 @@
+<div>
+  [template cms-header, {loggedIn:loggedIn}]
+  <div class="row cms-settings">
+    [if loggedIn]
+    <div class="col-12">
+      <label>Collection name</label>
+      <input type="text" name="name" class="form-control" placeholder="name of collection" value="${name}">
+    </div>
+    <div class="col-12">
+      <label>Rest name</label>
+      <input type="text" name="rest" class="form-control" placeholder="name of rest route" value="${rest}">
+    </div>
+    <div class="col-12">
+      <label>Collection texts</label>
+      <textarea name="texts" data-arrfromnewline="1" class="form-control" placeholder="Add/edit texts, one text per line">${texts?texts.join('\n'):''}</textarea>
+    </div>
+    <div class="col-12">
+      <textarea name="fields" class="form-control" placeholder="Add/edit array of fields settings in JSON format">${fields}</textarea>
+    </div>
+    [else]
+      <div class="col-12">
+        [template cms-login]
+      </div>
+    [endif]
+  </div>
+</div>

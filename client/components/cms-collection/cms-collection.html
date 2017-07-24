@@ -1,0 +1,99 @@
+<table class="table table-sm table-hover">
+  <thead>
+    <tr class="thead-inverse">
+      <th colspan="${parseInt(fieldList.length/2)}">
+        [if creating]
+          Ny ${collection.texts[2]}
+        [else]
+          <a class="toggle-rows" data-click="toggleShowRows">
+            ${collection.texts[0]} (${items.length})
+            <span class="fa [if showing]fa-angle-double-up[else]fa-angle-double-down[endif]"></span>
+          </a>
+        [endif]
+      </th>
+      <th colspan="${fieldList.length+padListView.length - parseInt((fieldList.length+padListView.length)/2) + 1}" class="right">
+        [if creating]
+          [if collection.fullViewEditing]
+            <div class="full-view toolbar">
+              <span class="left">Ny ${collection.texts[2]}</span>
+          [endif]
+              <div class="btn-group btn-group-sm right">
+                <button type="button" class="btn btn-primary" data-click="saveItem">spara</button>
+                <button type="button" class="btn btn-secondary active" data-click="toggleNew">avbryt</button>
+              </div>
+          [if collection.fullViewEditing]
+            </div>
+          [endif]
+        [else]
+          <button class="btn btn-sm btn-secondary" data-click="toggleNew">Lägg till en ny ${collection.texts[2]}</button>
+        [endif]
+      </th>
+    </tr>
+    [if creating]
+      <tr class="active">
+        <td colspan="${1+fieldList.length+padListView.length}">[template cms-item, {fields: fieldList, fullViewEditing: collection.fullViewEditing}]</td>
+      </tr>
+    [endif]
+    [if showing]
+      <tr>
+        [repeat fieldList, field]
+          [if field.inListView]
+            <th>${field.texts[0]}</th>
+          [endif]
+        [endrepeat]
+        [repeat padListView, p]
+          <th>&nbsp;</th>
+        [endrepeat]
+        <th>&nbsp;</th>
+      </tr>
+    [endif]
+  </thead>
+  [if showing]
+    <tbody class="collection-rows">
+      [repeat items, item]
+        <tr[if editing && editing._id==item._id] class="active"[endif]>
+          [repeat fieldList, field]
+            [if field.inListView]
+              [if field.isArray]
+                <td class="elipsis">${item[field.fieldName].join('&nbsp; &nbsp;')}</td>
+              [else]
+                <td class="elipsis">${item[field.fieldName]}</td>
+              [endif]
+            [endif]
+          [endrepeat]
+          [repeat padListView, p]
+            <td>&nbsp;</td>
+          [endrepeat]
+          <td colspan="2" class="right nowrap">
+            [if editing && editing._id==item._id]
+              [if collection.fullViewEditing]
+                <div class="full-view toolbar">
+                  <span class="left">Ändra ${collection.texts[2]}</span>
+              [endif]
+                  <div class="btn-group btn-group-sm right" data-id="${item._id}">
+                    <button type="button" class="btn btn-primary" data-click="saveItem">spara</button>
+                    <button type="button" class="btn btn-danger" data-click="deleteItem">radera</button>
+                    <button type="button" class="btn btn-secondary active" data-click="toggleEdit">avbryt</button>
+                  </div>
+              [if collection.fullViewEditing]
+                </div>
+              [endif]
+            [else]
+              <div class="btn-group btn-group-sm" data-id="${item._id}">
+                <button type="button" class="btn btn-secondary" data-click="toggleEdit">ändra</button>
+              </div>
+            [endif]
+            <div class="btn-group btn-group-sm" data-id="${item._id}">
+              <button type="button" class="btn btn-secondary btn-sm-min" data-click="toggleShowItem">${item.show?'inaktivera':'aktivera'}</button>
+            </div>
+          </td>
+        </tr>
+        [if editing && editing._id==item._id]
+          <tr class="active">
+            <td colspan="${fieldList.length+1}">[template cms-item, {item: item, fields: fieldList, fullViewEditing: collection.fullViewEditing}]</td>
+          </tr>
+        [endif]
+      [endrepeat]
+    </tbody>
+  [endif]
+</table>

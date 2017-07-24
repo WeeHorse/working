@@ -37,7 +37,22 @@ class CMS extends Component{
     err && console.log(this.niceError(err));
     if(!err){
       this.items = data;
+      for(let i=0; i<this.items.length; i++){
+        let item = this.items[i];
+        if(!item._id && item.id){
+          item._id = item.id; // mitigate difference between mongo and mysql
+        }
+        for(let key in item){ // parse JSON strings to JS objects
+          if(typeof item[key] == 'string'){
+            let parsed = this.tryParseJSON(item[key]);
+            if(parsed && parsed !== item[key]){
+              item[key] = parsed;
+            }
+          }
+        }
+      }
       console.log('collection loaded for', this.rest, 'with length', this.items.length);
+      console.log('with items', this.items);
     }
   }
 
@@ -83,6 +98,11 @@ class CMS extends Component{
     });
     console.log('saveItem', item);
     if(id){
+      if(item.id && !item._id){
+        item._id = item.id;
+      }else if(item._id && !item.id){
+        item.id = item._id;
+      }
       [err, res] = await this.update(id, item);
     }else{
       [err, res] = await this.create(item);
@@ -149,6 +169,21 @@ class CMS extends Component{
       }
     }
     return {};
+  }
+
+  tryParseJSON (jsonString){
+    try {
+      var o = JSON.parse(jsonString);
+      // Handle non-exception-throwing cases:
+      // Neither JSON.parse(false) or JSON.parse(1234) throw errors, hence the type-checking,
+      // but... JSON.parse(null) returns null, and typeof null === "object",
+      // so we must check for that, too. Thankfully, null is falsey, so this suffices:
+      if (o && typeof o === "object") {
+        return o;
+      }
+    }
+    catch (e) { }
+    return false;
   }
 
 }
