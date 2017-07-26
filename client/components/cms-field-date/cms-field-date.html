@@ -1,0 +1,6 @@
+<div class="form-group row[if field.required] has-danger[endif]" data-id="${_id||''}">
+  <label class="col-2 col-form-label">${field.texts[0]}</label>
+  <div class="col-9" ignore-dom-changes>
+    <input type="datetime" class="form-control"  name="${field.fieldName}" value="${field.fieldVal}" [if field.required] required[endif]>
+  </div>
+</div>

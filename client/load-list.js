@@ -42,6 +42,7 @@ gnarly.load = `
     cms-item.*
     cms-field-textarray.*
     cms-field-text.*
+    cms-field-date.*
     cms-field-textarea.*
     cms-field-json.*
     cms-field-wysiwyg.*
