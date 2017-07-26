@@ -6,7 +6,9 @@
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
     "flatpickr": "^3.0.5-1",
+    "fullcalendar": "^3.4.0",
     "jquery": "^3.2.1",
+    "moment": "^2.18.1",
     "tether": "^1.4.0"
   },
   "devDependencies": {},

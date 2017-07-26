@@ -12,6 +12,9 @@ gnarly.load = `
     #bootstrap/dist/js/bootstrap.min.js
     #flatpickr/dist/flatpickr.min.js
     #flatpickr/dist/l10n/sv.js
+    #moment/min/moment.min.js
+    #fullcalendar/dist/fullcalendar.min.js
+    #fullcalendar/dist/locale-all.js
 
   js/libs/
     console.log.js
@@ -35,6 +38,7 @@ gnarly.load = `
   components/
     app.*
     index-page.*
+    cms-calendar.*
     cms-dash.*
     cms-header.*
     cms-login.*

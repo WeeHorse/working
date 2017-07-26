@@ -1,0 +1,46 @@
+#calendar{
+
+  .staff-Benjamin,
+  .staff-Thomas,
+  .staff-Dennis{
+    &::before {
+      border:1px solid #999;
+      border-radius: 3px;
+      background-color: #f99;
+      color:white;
+    }
+  }
+
+  .staff-Benjamin{
+    &::before {
+      content: "BB";
+    }
+  }
+  .staff-Thomas{
+    &::before {
+      content: "TF";
+    }
+  }
+  .staff-Dennis{
+    &::before {
+      content: "DM";
+    }
+  }
+
+  .Newton-SYSJM2{
+    background-color: #fed;
+  }
+  .Lernia-SUW16{
+    background-color: #def;
+  }
+  .Lernia-SUW17{
+    background-color: #dff;
+  }
+  .Medieinstitutet-OLM16{
+    background-color: #edf;
+  }
+  .Medieinstitutet-OLMM17{
+    background-color: #ede;
+  }
+
+}
