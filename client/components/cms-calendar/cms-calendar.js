@@ -27,10 +27,10 @@ class CmsCalendar extends CMS {
       // handle multiple rows from the db setting data to the same schedule
       if(!events[schedule.id]){
         events[schedule.id] = {
-          title: schedule.name + ': ' + schedule.label,
+          id: schedule.id,
+          title: schedule.label,
           start: schedule.start.split(' ').join('T'),
-          end: schedule.stop.split(' ').join('T'),
-          // className: schedule.organisation + '-' + schedule.name,
+          end: schedule.stop? schedule.stop.split(' ').join('T') : null,
           project:{
             id: schedule.project,
             name: schedule.name,
@@ -50,12 +50,12 @@ class CmsCalendar extends CMS {
         });
       }
     }
-
     this.setupCalendar(Object.values(events));
   }
 
 
   setupCalendar(events){
+    var me = this;
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -68,15 +68,24 @@ class CmsCalendar extends CMS {
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectHelper: true,
-      select: function(start, end) {
-        var title = prompt('Event Title:');
+      select: function(start, end, allDay){
+        // we do not know if allDay is useful
+        //  or if we instead will just get
+        //  a plain date in start and no date in end instead
+        var projectId = prompt('Projekt (id):');
+        var projectName = prompt('Projekt (namn):');
+        var title = prompt('Beskrivning:');
+        var staff = prompt('Personal (komma-delimiterade idn):');
         var eventData;
-        if (title) {
+        if (projectId) {
           eventData = {
             title: title,
+            project: {id: projectId, name: projectName},
+            staff: staff,
             start: start,
             end: end
           };
+          me.saveEvent(eventData);
           $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
         }
         $('#calendar').fullCalendar('unselect');
@@ -85,15 +94,39 @@ class CmsCalendar extends CMS {
       eventLimit: true, // allow "more" link when too many events
       events: events,
       eventRender: function(event, element) {
-        console.log('to render event', event, 'in element', element);
-        let staff = '';
-        for(let s of event.staff){
-          staff += '<span class="initials staff-' + s.id + '">' + s.initials + '</span>';
+        if(event.project){
+          element.addClass('project-' + event.project.id);
+          element.prepend('<span class="project-name">' + event.project.name + '</span>');
         }
-        element.addClass('project-' + event.project.id);
-        element.prepend(staff);
+        if(event.staff && event.staff.push){
+          let staff = '<span class="initials">';
+          for(let s of event.staff){
+            staff += '<span class="staff-' + s.id + '">' + s.initials + '</span> ';
+          }
+          staff += '</span>';
+          element.append(staff);
+        }
+      },
+      eventClick: function(event, element) {
+        console.log('changes to the event?', event);
       }
     });
+  }
+
+  async saveEvent(event){
+    this.rest = 'schedules';
+    let schedule = {
+      label: event.title,
+      start: event.start,
+      stop: event.end,
+      project: event.project.id
+    };
+    if(event.id){
+      schedule.id = event.id;
+      await this.update(schedule.id, schedule);
+    }else{
+      await this.create(schedule);
+    }
   }
 
 
