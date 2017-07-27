@@ -1,0 +1,16 @@
+<div class="form-group row[if field.required] has-danger[endif]" data-id="${_id||''}">
+  <label class="col-2 col-form-label">${field.texts[0]}</label>
+  <div class="col-9">
+
+    <select multiple name="${field.fieldName}" class="form-control"[if field.required] required[endif]>
+      [repeat option, field.options]
+        [if field.fieldVal == option.value]
+          <option value="${option.value}" selected="selected">${option.text}</option>
+        [else]
+          <option value="${option.value}">${option.text}</option>
+        [endif]
+      [endrepeat]
+    </select>
+
+  </div>
+</div>
