@@ -1,49 +1,62 @@
-#calendar{
+.calendar-page{
 
-  .initials{
-    display: block;
-    margin:2px 2px 2px 0;
-    &>span{
-      line-height: 8px;
-      font-size: 11px;
-      border:1px solid #999;
-      border-radius: 3px;
-      color:white;
-      padding:2px;
+
+
+  #calendar{
+
+    .initials{
+      //display: block;
+      margin:2px 2px 2px 0;
+      &>span{
+        line-height: 8px;
+        font-size: 11px;
+        border:1px solid #999;
+        border-radius: 3px;
+        color:white;
+        padding:2px;
+      }
     }
+
+    td > .initials{
+      float:right;
+    }
+
+    .project-name{
+      //display: block;
+      margin:2px 6px 2px 0;
+      font-weight: bold;
+    }
+
+    .fc-event-dot{
+      display: none;
+    }
+
+    .fc-title{
+      font-style: italic;
+      font-size: 13px;
+    }
+
+    // a bunch of colors for various staff
+    .staff-1{background-color: #f90;}
+    .staff-2{background-color: #f9f;}
+    .staff-3{background-color: #9f0;}
+    .staff-4{background-color: #9f9;}
+    .staff-5{background-color: #09f;}
+    .staff-6{background-color: #090;}
+    .staff-7{background-color: #0f0;}
+    .staff-8{background-color: #f0f;}
+    .staff-9{background-color: #f99;}
+
+    // a bunch of colors for various projects
+    .project-1{background-color: #fed;}
+    .project-2{background-color: #def;}
+    .project-3{background-color: #dff;}
+    .project-4{background-color: #edf;}
+    .project-5{background-color: #ede;}
+    .project-6{background-color: #edd;}
+    .project-7{background-color: #dde;}
+    .project-8{background-color: #eed;}
+    .project-9{background-color: #dee;}
+
   }
-
-  .project-name{
-    display: block;
-    margin:2px 2px 2px 0;
-    font-weight: bold;
-  }
-
-  .fc-title{
-    font-style: italic;
-    font-size: 13px;
-  }
-
-  // a bunch of colors for various staff
-  .staff-1{background-color: #f90;}
-  .staff-2{background-color: #f9f;}
-  .staff-3{background-color: #9f0;}
-  .staff-4{background-color: #9f9;}
-  .staff-5{background-color: #09f;}
-  .staff-6{background-color: #090;}
-  .staff-7{background-color: #0f0;}
-  .staff-8{background-color: #f0f;}
-  .staff-9{background-color: #f99;}
-
-  // a bunch of colors for various projects
-  .project-1{background-color: #fed;}
-  .project-2{background-color: #def;}
-  .project-3{background-color: #dff;}
-  .project-4{background-color: #edf;}
-  .project-5{background-color: #ede;}
-  .project-6{background-color: #edd;}
-  .project-7{background-color: #dde;}
-  .project-8{background-color: #eed;}
-  .project-9{background-color: #dee;}
-
 }

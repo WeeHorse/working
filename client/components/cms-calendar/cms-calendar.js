@@ -2,13 +2,14 @@ class CmsCalendar extends CMS {
 
   static get route(){
     return [
-      '/calendar/:date',
+      '/calendar/:view/:date',
       '/calendar'
     ];
   }
 
   constructor(props){
     super(props);
+    this.showEvent = false;
   }
 
   load(){
@@ -53,49 +54,69 @@ class CmsCalendar extends CMS {
     this.setupCalendar(Object.values(events));
   }
 
-
   setupCalendar(events){
     var me = this;
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
+        right: 'month,agendaWeek,agendaDay,listMonth,listWeek'
+        // 'month,basicWeek,basicDay,agendaWeek,agendaDay,listYear,listMonth,listWeek,listDay'
       },
+      // header: {
+      //   left: null,
+      //   center: null,
+      //   right: null
+      // },
       locale: 'sv',
       weekNumbers: true,
+      defaultView: this.params.view? this.params.view : 'agendaWeek',
       defaultDate: this.params.date? new Date(this.params.date) : new Date(),
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectHelper: true,
       select: function(start, end, allDay){
-        // we do not know if allDay is useful
-        //  or if we instead will just get
-        //  a plain date in start and no date in end instead
-        var projectId = prompt('Projekt (id):');
-        var projectName = prompt('Projekt (namn):');
-        var title = prompt('Beskrivning:');
-        var staff = prompt('Personal (komma-delimiterade idn):');
-        var eventData;
-        if (projectId) {
-          eventData = {
-            title: title,
-            project: {id: projectId, name: projectName},
-            staff: staff,
-            start: start,
-            end: end
-          };
-          me.saveEvent(eventData);
-          $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-        }
-        $('#calendar').fullCalendar('unselect');
+        console.log('select called', start, end, allDay);
+        me.handleEvent({start: start, end: end, allDay: false}); // allDay
       },
+      eventClick: function(calEvent, jsEvent, view) {
+        console.log('Event', calEvent);
+        console.log('Coordinates', jsEvent.pageX, jsEvent.pageY);
+        console.log('View', view.name);
+        me.handleEvent(calEvent);
+      },
+      // select: function(start, end, allDay){
+      //   // we do not know if allDay is useful
+      //   //  or if we instead will just get
+      //   //  a plain date in start and no date in end instead
+
+      //   var projectId = prompt('Projekt (id):');
+      //   var projectName = prompt('Projekt (namn):');
+      //   var title = prompt('Beskrivning:');
+      //   var staff = prompt('Personal (komma-delimiterade idn):');
+      //   var eventData;
+      //   if (projectId) {
+      //     eventData = {
+      //       title: title,
+      //       project: {id: projectId, name: projectName},
+      //       staff: staff,
+      //       start: start,
+      //       end: end
+      //     };
+      //     me.saveEvent(eventData);
+      //     $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+      //   }
+      //   $('#calendar').fullCalendar('unselect');
+      // },
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: events,
       eventRender: function(event, element) {
         if(event.project){
           element.addClass('project-' + event.project.id);
+          if(element.children('td').eq(1).length){
+            element = element.children('td').eq(1);
+          }
           element.prepend('<span class="project-name">' + event.project.name + '</span>');
         }
         if(event.staff && event.staff.push){
@@ -104,16 +125,24 @@ class CmsCalendar extends CMS {
             staff += '<span class="staff-' + s.id + '">' + s.initials + '</span> ';
           }
           staff += '</span>';
+          if(element.siblings('td').length){
+            element = element.siblings('td').last();
+          }
           element.append(staff);
         }
-      },
-      eventClick: function(event, element) {
-        console.log('changes to the event?', event);
       }
     });
   }
 
+  async handleEvent(event){
+    console.log('handleEvent event', event);
+    this.selectedEvent = event;
+    $('#calendarModal').modal({someConfProp: 'someConfValue'});
+  }
+
   async saveEvent(event){
+    console.log('calling saveEvent');
+    event = event || this.selectedEvent || {};
     this.rest = 'schedules';
     let schedule = {
       label: event.title,

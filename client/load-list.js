@@ -39,6 +39,7 @@ gnarly.load = `
     app.*
     index-page.*
     cms-calendar.*
+    cms-calendar-event.*
     cms-dash.*
     cms-header.*
     cms-login.*
